@@ -17,7 +17,8 @@ async function run() {
 		}
 
 		// Read CSS file
-		const css = fs.readFileSync(cssPath, 'utf8')
+		var cssFiles = fs.readdirSync(cssPath).filter(fn => fn.endsWith('.css'));
+		const css = fs.readFileSync(cssFiles[0], 'utf8')
 
 		// POST CSS to projectwallace.com to get the diff
 		const response = await got(
