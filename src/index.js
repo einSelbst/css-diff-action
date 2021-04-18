@@ -8,6 +8,9 @@ async function run() {
 	try {
 		const cssPath = core.getInput('css-path')
 		console.log(cssPath)
+		echo "::debug::Set the Octocat variable"
+		core.debug("test")
+		core.debug(cssPath)
 		const webhookToken = core.getInput('project-wallace-token')
 		console.log(webhookToken)
 		const githubToken = core.getInput('github-token')
