@@ -16,30 +16,9 @@ async function run() {
 	console.log(`First file is ${files[0]}`)
 	//const cssPath = core.getInput('css-path')
 	//console.log(cssPath)
-	echo "::debug::Set the Octocat variable"
-	core.debug("test")
-	//core.debug(cssPath)
 
-	const webhookToken = core.getInput('project-wallace-token')
-	console.log(webhookToken)
 
-	const githubToken = core.getInput('github-token')
-	console.log(githubToken)
-
-	const shouldPostPrComment = core.getInput('post-pr-comment') === 'true'
-	const { eventName, payload } = github.context
-	console.log(eventName)
-
-	//if (eventName !== 'pull_request') {
-	//	console.log("finish early")
-	//	return
-	//}
-
-	// Read CSS file
-	console.log("read css file")
-	//var cssFiles = fs.readdirSync(cssPath).filter(fn => fn.endsWith('.css'));
-	//console.log(cssFiles)
-	//console.log(cssFiles[0])
+	
 	
 	} catch (error) {
 		core.debug('Debug2')
