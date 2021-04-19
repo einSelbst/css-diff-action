@@ -13,7 +13,7 @@ async function run() {
 	//const globber = await glob.create(core.getInput('path'), { followSymbolicLinks: false })
 	const files = await globber.glob()
 	console.log(`Found ${files.length} files to upload`)
-	console.log(`First file is ${files[0]}`)
+	//console.log(`First file is ${files[0]}`)
 	//const cssPath = core.getInput('css-path')
 	//console.log(cssPath)
 
