@@ -13,7 +13,6 @@ async function run() {
 	//const globber = await glob.create(core.getInput('path'), { followSymbolicLinks: false })
 	const files = await globber.glob()
 
-	//const cssPath = core.getInput('css-path')
 	const webhookToken = core.getInput('project-wallace-token')
 	const githubToken = core.getInput('github-token')
 	const shouldPostPrComment = core.getInput('post-pr-comment') === 'true'
