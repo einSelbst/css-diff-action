@@ -1,23 +1,31 @@
 const fs = require('fs')
 const got = require('got')
 const core = require('@actions/core')
+const glob = require('@actions/glob');
 const github = require('@actions/github')
 const { createCommentMarkdown } = require('./create-comment')
 
 async function run() {
+	// find the css file in the project
+	//const patterns = ['**/css', '**/*.css']
+	//const globber = await glob.create(patterns.join('\n'))
+	const globber = await glob.create('./.next/static/css/*.css', { followSymbolicLinks: false })
+	//const globber = await glob.create(core.getInput('path'), { followSymbolicLinks: false })
+	const files = await globber.glob()
+
+	const webhookToken = core.getInput('project-wallace-token')
+	const githubToken = core.getInput('github-token')
+	const shouldPostPrComment = core.getInput('post-pr-comment') === 'true'
+	const { eventName, payload } = github.context
+	//if (eventName !== 'pull_request') {
+	//	console.log("finish early")
+	//	return
+	//}
+
+	// Read CSS file
+	//var cssFiles = fs.readdirSync(cssPath).filter(fn => fn.endsWith('.css'));
 	try {
-		const cssPath = core.getInput('css-path')
-		const webhookToken = core.getInput('project-wallace-token')
-		const githubToken = core.getInput('github-token')
-		const shouldPostPrComment = core.getInput('post-pr-comment') === 'true'
-		const { eventName, payload } = github.context
-
-		if (eventName !== 'pull_request') {
-			return
-		}
-
-		// Read CSS file
-		const css = fs.readFileSync(cssPath, 'utf8')
+		const css = fs.readFileSync(files[0], 'utf8')
 
 		// POST CSS to projectwallace.com to get the diff
 		const response = await got(
@@ -58,8 +66,10 @@ async function run() {
 				throw error
 			})
 	} catch (error) {
+		core.debug('Debug2')
 		core.setFailed(error.message)
 	}
+core.debug('Debug3')
 }
 
 run()
