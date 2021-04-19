@@ -7,12 +7,8 @@ const { createCommentMarkdown } = require('./create-comment')
 
 async function run() {
 	
-	const patterns = ['**/css', '**/*.css']
-	const globber = await glob.create(patterns.join('\n'))
-	
-	//const globber = await glob.create(core.getInput('path'), { followSymbolicLinks: false })
-	const files = await globber.glob()
-	console.log(`Found ${files.length} files to upload`)
+
+	console.log(`Found files to upload`)
 	//console.log(`First file is ${files[0]}`)
 	//const cssPath = core.getInput('css-path')
 	//console.log(cssPath)
