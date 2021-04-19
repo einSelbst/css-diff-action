@@ -5,6 +5,7 @@ const github = require('@actions/github')
 const { createCommentMarkdown } = require('./create-comment')
 
 async function run() {
+	core.debug('Debug')
 	const cssPath = core.getInput('css-path')
 	console.log(cssPath)
 	echo "::debug::Set the Octocat variable"
@@ -70,8 +71,10 @@ async function run() {
 				throw error
 			})
 	} catch (error) {
+		core.debug('Debug2')
 		core.setFailed(error.message)
 	}
+core.debug('Debug3')
 }
 
 run()
