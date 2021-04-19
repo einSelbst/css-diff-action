@@ -5,6 +5,7 @@ const github = require('@actions/github')
 const { createCommentMarkdown } = require('./create-comment')
 
 async function run() {
+	console.log("hei slei")
 	try {
 		const cssPath = core.getInput('css-path')
 		const webhookToken = core.getInput('project-wallace-token')
